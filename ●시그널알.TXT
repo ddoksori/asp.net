@@ -1,0 +1,39 @@
+■[에러]
+The following errors occurred while attempting to load the app.
+- No assembly found containing an OwinStartupAttribute.
+- No assembly found containing a Startup or [AssemblyName].Startup class.
+To disable OWIN startup discovery, add the appSetting owin:AutomaticAppStartup with a value of "false" in your web.config.
+To specify the OWIN startup Assembly, Class, or Method, add the appSetting owin:AppStartup with the fully qualified startup class or configuration method name in your web.config.
+
+■[해결] (https://www.it-swarm.dev/ko/c%23/owinstartupattribute-%EC%98%A4%EB%A5%98%EA%B0%80-%ED%8F%AC%ED%95%A8-%EB%90%9C-%EC%96%B4%EC%85%88%EB%B8%94%EB%A6%AC%EB%A5%BC-%EC%B0%BE%EC%9D%84-%EC%88%98-%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4/826920386/)
+web.config
+ <configuration>
+  <appSettings>
+    <add key="owin:AutomaticAppStartup" value="false" />
+  </appSettings>
+  ...
+</configuration>
+
+
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.Signal.Hubs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+namespace WebAppSignalR.Hubs
+{
+    [HubName("chat")]
+    public class ChatHub : Hub
+    {
+        //클라이언트 -> 서버로전송
+        public void SendMessage(string name, string message)
+        {
+             //추가적인코드구현
+             
+             // 브로드캐스팅 : 서버에서 -> 클라이언트로 전송
+                   
+         }  
+    } 
+
+}
